@@ -2,8 +2,9 @@
 
 This is a mobile application that I'm currently developing to help people generating random recipes for their week. Made with ❤️ in Montréal!
 
-![Image](Recipes.png)
-![Image](Profile.png)
+Recipes             |  Profile
+:-------------------------:|:-------------------------:
+![](Recipes.png)  |  ![](Profile.png)
 
 ## Stack
 
