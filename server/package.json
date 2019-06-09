@@ -1,0 +1,26 @@
+{
+  "name": "v",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon --exec babel-node ./bin/www",
+    "debug": "nodemon  --exec babel-node --inspect ./bin/www"
+  },
+  "dependencies": {
+    "bcrypt": "^3.0.3",
+    "cookie-parser": "~1.4.3",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "firebase-admin": "^7.0.0",
+    "http-errors": "~1.6.2",
+    "jsonwebtoken": "^8.4.0",
+    "mongodb": "^3.1.13",
+    "nodemon": "^1.18.9"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.3.1"
+  }
+}

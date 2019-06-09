@@ -1,0 +1,17 @@
+{
+  "files.exclude": {
+    "**/.babelrc": true,
+    "**/.expo/": true,
+    "**/.vscode/": true,
+    "**/*-lock.json": true,
+    "**/*.gitignore": true,
+    "**/*.lock": true,
+    "**/*.watchmanconfig": true,
+    "**/app.json": true,
+    "**/babel.config.js": true,
+    "**/bin/": true,
+    "**/client/scripts": true,
+    "**/node_modules/": true,
+    "**/public/": true
+  }
+}
