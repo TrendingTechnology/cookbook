@@ -3,7 +3,7 @@ import axios from "axios";
 import { getAccessToken, redirectToSignIn } from "./oauth-helper";
 
 const baseUrl = __DEV__
-  ? "http://192.168.0.117:8080/"
+  ? "http://192.168.0.113:8080/"
   : "http://api.cookbook.com/";
 const config = {
   headers: {
