@@ -42,10 +42,7 @@ export default class App extends React.Component {
   }
 
   onAuthStateChanged = async user => {
-    if (user) {
-      const token = await firebase.auth().currentUser.getIdToken(true);
-      await setAccessToken(token);
-    } else {
+    if (!user) {
       await removeAccessToken();
     }
     this.setState({ isAuthenticationReady: true, isAuthenticated: !!user });

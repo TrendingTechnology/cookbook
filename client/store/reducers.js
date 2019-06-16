@@ -8,8 +8,9 @@ import { recipes } from "../features/recipes/reducer";
 import { profile } from "../features/profile/reducer";
 import { preferences } from "../features/profile/preferences/reducer";
 import { modalPreferences } from "../features/profile/preferences/modal-preferences/reducer";
+import { SIGN_OUT_REQUEST } from "../features/profile/actions";
 
-export const reducers = combineReducers({
+const appReducer = combineReducers({
   loading,
   forgotPassword,
   signIn,
@@ -19,3 +20,11 @@ export const reducers = combineReducers({
   preferences,
   modalPreferences
 });
+
+export const rootReducer = (state, action) => {
+  if (action.type === SIGN_OUT_REQUEST) {
+    state = undefined;
+  }
+
+  return appReducer(state, action);
+};

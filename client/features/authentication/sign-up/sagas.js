@@ -7,7 +7,8 @@ import {
   STOP_LOADING
 } from "../../../components/loading/actions";
 import { post } from "../../../helpers/api-helper";
-import { SHOW_PREFERENCES_MODAL } from "../../profile/preferences/modal-preferences/actions";
+import { GET_PROFILE_REQUEST } from "../../profile/actions";
+import { setAccessToken } from "../../../helpers/oauth-helper";
 
 export function* watcherSignUpSaga() {
   yield takeLatest(SIGN_UP_REQUEST, workerSignUpSaga);
@@ -16,17 +17,32 @@ export function* watcherSignUpSaga() {
 function* workerSignUpSaga({ payload }) {
   try {
     yield call(() => startLoading());
+
+    // Sign up with firebase.
     const responseSignUp = yield call(() => signUp(payload));
+
+    // Get the user token and set the access token in storage.
+    const token = yield call(() => getToken());
+    yield call(() => setAccessToken(token));
+
     const { user } = responseSignUp;
     const { email, displayName, emailVerified, uid } = user;
 
-    yield call(() => sendEmailVerification(user));
+    // TODO: Uncomment this line.
+    // yield call(() => sendEmailVerification(user));
     yield call(() =>
       post("authentication/signup", {
         uid
       })
     );
-    yield put({ type: SHOW_PREFERENCES_MODAL });
+
+    yield put({
+      type: GET_PROFILE_REQUEST
+    });
+    yield put({
+      type: SIGN_UP_SUCCESS,
+      payload: { user: { email, displayName, emailVerified, uid } }
+    });
   } catch (error) {
     yield put({ type: SIGN_UP_FAILURE, payload: { error: error.message } });
   } finally {
@@ -49,3 +65,5 @@ const signUp = ({ email, password }) =>
   firebase.auth().createUserWithEmailAndPassword(email, password);
 
 const sendEmailVerification = user => user.sendEmailVerification();
+
+const getToken = () => firebase.auth().currentUser.getIdToken(true);

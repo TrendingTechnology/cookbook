@@ -16,6 +16,7 @@ export function* watcherGetRecipesSaga() {
 function* workerGetRecipesSaga() {
   try {
     yield call(() => startLoading());
+
     const { data } = yield call(() => get("recipes"));
 
     yield put({

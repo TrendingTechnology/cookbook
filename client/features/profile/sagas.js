@@ -23,6 +23,7 @@ function* workerGetProfileSaga() {
   try {
     yield call(() => startLoading());
     const { data } = yield call(() => get("users"));
+
     yield sagaPut({ type: GET_PROFILE_SUCCESS, payload: { profile: data } });
   } catch (error) {
     yield sagaPut({

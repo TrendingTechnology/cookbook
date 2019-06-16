@@ -35,29 +35,22 @@ const RecipesComponent = ({ onGetRecipes, recipes, profile }) => {
 
   return (
     <Container>
-      <Header hasTabs>
+      <Header>
         <Left />
         <Body>
           <Title>Recipes</Title>
         </Body>
         <Right />
       </Header>
-      <Tabs>
-        <Tab heading="Tab1">
-          <Content padder>
-            {recipes && recipes.length > 0 ? (
-              recipes.map((recipe, index) => (
-                <Recipe key={index} recipe={recipe} day={weekday[index]} />
-              ))
-            ) : (
-              <React.Fragment />
-            )}
-          </Content>
-        </Tab>
-        <Tab heading="Tab2">
-          <Text>World</Text>
-        </Tab>
-      </Tabs>
+      <Content padder>
+        {recipes && recipes.length > 0 ? (
+          recipes.map((recipe, index) => (
+            <Recipe key={index} recipe={recipe} day={weekday[index]} />
+          ))
+        ) : (
+          <React.Fragment />
+        )}
+      </Content>
     </Container>
   );
 };

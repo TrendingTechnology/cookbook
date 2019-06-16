@@ -6,6 +6,8 @@ import {
   START_LOADING,
   STOP_LOADING
 } from "../../../components/loading/actions";
+import { GET_PROFILE_REQUEST } from "../../profile/actions";
+import { setAccessToken } from "../../../helpers/oauth-helper";
 
 export function* watcherSignInSaga() {
   yield takeLatest(SIGN_IN_REQUEST, workerSignInSaga);
@@ -14,9 +16,20 @@ export function* watcherSignInSaga() {
 function* workerSignInSaga({ payload }) {
   try {
     yield call(() => startLoading());
+
+    // Sign in with firebase.
     const firebaseResponse = yield call(() => signIn(payload));
+
+    // Get the user token and set the access token in storage.
+    const token = yield call(() => getToken());
+    yield call(() => setAccessToken(token));
+
+    // Get the user from the firebase response.
     const { email, displayName, emailVerified, uid } = firebaseResponse.user;
 
+    yield put({
+      type: GET_PROFILE_REQUEST
+    });
     yield put({
       type: SIGN_IN_SUCCESS,
       payload: { user: { email, displayName, emailVerified, uid } }
@@ -40,3 +53,5 @@ function* stopLoading() {
 }
 const signIn = ({ email, password }) =>
   firebase.auth().signInWithEmailAndPassword(email, password);
+
+const getToken = () => firebase.auth().currentUser.getIdToken(true);

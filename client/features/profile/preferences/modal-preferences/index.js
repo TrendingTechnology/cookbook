@@ -5,19 +5,14 @@ import { Text, Container, Content, H1, Icon } from "native-base";
 
 import { StyledButton } from "../../../../components/StyledButton";
 import { Preferences } from "../index";
-import { UPDATE_PROFILE_REQUEST, GET_PROFILE_REQUEST } from "../../actions";
+import { UPDATE_PROFILE_REQUEST } from "../../actions";
 
 const ModalPreferencesComponent = ({
   modalPreferences,
   onUpdateProfile,
-  onGetProfile,
   profile,
   preferences
 }) => {
-  useEffect(() => {
-    onGetProfile();
-  }, []);
-
   return (
     <Modal
       animationType="slide"
@@ -74,10 +69,6 @@ const mapDispatchToProps = dispatch => {
       dispatch({
         type: UPDATE_PROFILE_REQUEST,
         payload: { profile }
-      }),
-    onGetProfile: () =>
-      dispatch({
-        type: GET_PROFILE_REQUEST
       })
   };
 };

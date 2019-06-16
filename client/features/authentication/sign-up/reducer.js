@@ -1,4 +1,5 @@
 import {
+  SIGN_UP_SUCCESS,
   SIGN_UP_FAILURE,
   SIGN_UP_EMAIL_CHANGED,
   SIGN_UP_PASSWORD_CHANGED,
@@ -15,6 +16,8 @@ const initialState = {
 
 export const signUp = (state = initialState, action) => {
   switch (action.type) {
+    case SIGN_UP_SUCCESS:
+      return { ...initialState };
     case SIGN_UP_FAILURE:
       return { ...state, error: action.payload.error };
     case SIGN_UP_EMAIL_CHANGED:

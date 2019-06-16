@@ -20,6 +20,7 @@ import firebase from "firebase";
 
 import { StyledButton } from "../../components/StyledButton";
 import { StyledText } from "../../components/StyledText";
+import { SIGN_OUT_REQUEST } from "./actions";
 
 const ProfileComponent = ({ onRequestSignOut }) => {
   return (
@@ -92,7 +93,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onRequestSignOut: () => firebase.auth().signOut()
+    onRequestSignOut: () => {
+      dispatch({ type: SIGN_OUT_REQUEST });
+      firebase.auth().signOut();
+    }
   };
 };
 
