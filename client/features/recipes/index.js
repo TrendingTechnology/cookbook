@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { StyleSheet } from "react-native";
+import { StyleSheet, ScrollView, RefreshControl } from "react-native";
 import {
   Header,
   Tab,
@@ -35,27 +35,42 @@ const RecipesComponent = ({ onGetRecipes, recipes, profile }) => {
 
   return (
     <Container>
-      <Header>
-        <Left />
-        <Body>
-          <Title>Recipes</Title>
-        </Body>
+      <Header style={styles.header}>
+        <Left>
+          <Title style={styles.headerTitle}>Recipes</Title>
+        </Left>
         <Right />
       </Header>
-      <Content padder>
-        {recipes && recipes.length > 0 ? (
-          recipes.map((recipe, index) => (
-            <Recipe key={index} recipe={recipe} day={weekday[index]} />
-          ))
-        ) : (
-          <React.Fragment />
-        )}
-      </Content>
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={false} onRefresh={onGetRecipes} />
+        }
+      >
+        <Content padder>
+          {recipes && recipes.length > 0 ? (
+            recipes.map((recipe, index) => (
+              <Recipe key={index} recipe={recipe} day={weekday[index]} />
+            ))
+          ) : (
+            <React.Fragment />
+          )}
+        </Content>
+      </ScrollView>
     </Container>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  header: {
+    height: 80,
+    borderBottomWidth: 0,
+    paddingLeft: 20,
+    backgroundColor: "#fcfcfc"
+  },
+  headerTitle: {
+    fontSize: 30
+  }
+});
 
 const mapStateToProps = state => {
   return {

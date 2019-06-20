@@ -5,23 +5,25 @@ import { Text, Left, CardItem, Icon, Button, Card } from "native-base";
 
 const RecipeComponent = ({ recipe, day }) => {
   return (
-    <Card>
+    <Card transparent>
       <CardItem header>
-        <Text>{day}</Text>
+        <Text style={styles.recipeDay}>{day}</Text>
       </CardItem>
       <CardItem cardBody>
         <Image
           source={{
             uri: recipe.imageUrl
           }}
-          style={{ height: 200, width: null, flex: 1 }}
+          style={styles.recipeImage}
         />
       </CardItem>
       <CardItem>
-        <Text>{recipe.name}</Text>
+        <Text style={styles.recipeName}>{recipe.name}</Text>
       </CardItem>
       <CardItem>
-        <Text>Preparation: 45min {"\n"}Servings: 2 people</Text>
+        <Text style={styles.recipeDescription}>
+          Preparation: 45min {"\n"}Servings: 2 people
+        </Text>
       </CardItem>
       <CardItem>
         <Left>
@@ -43,7 +45,26 @@ const RecipeComponent = ({ recipe, day }) => {
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  recipeDay: {
+    fontSize: 30,
+    color: "#bcbcbc"
+  },
+  recipeImage: {
+    height: 200,
+    width: null,
+    flex: 1,
+    borderRadius: 5
+  },
+  recipeName: {
+    color: "#000000",
+    fontWeight: "bold",
+    fontSize: 20
+  },
+  recipeDescription: {
+    color: "#bcbcbc"
+  }
+});
 
 const mapStateToProps = state => {
   return {};

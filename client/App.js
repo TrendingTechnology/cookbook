@@ -16,7 +16,10 @@ import { ModalPreferences } from "./features/profile/preferences/modal-preferenc
 const store = configureStore();
 
 // Remove unwanted warnings
-YellowBox.ignoreWarnings(["Remote debugger"]);
+YellowBox.ignoreWarnings([
+  "Remote debugger",
+  "ReactNative.NativeModules.LottieAnimationView.getConstants"
+]);
 
 export default class App extends React.Component {
   constructor(props) {
