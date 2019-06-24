@@ -51,11 +51,20 @@ const styles = StyleSheet.create({
     color: "#bcbcbc"
   },
   recipeImageContainer: {
-    paddingLeft: 12,
-    paddingRight: 12
+    borderRadius: 15,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 5
+    },
+    shadowOpacity: 0.34,
+    shadowRadius: 6.27,
+    marginBottom: 20,
+    marginLeft: 12,
+    marginRight: 12
   },
   recipeImage: {
-    height: 200,
+    height: 350,
     flex: 1,
     borderRadius: 15
   },
