@@ -9,7 +9,7 @@ const RecipeComponent = ({ recipe, day }) => {
       <CardItem header>
         <Text style={styles.recipeDay}>{day}</Text>
       </CardItem>
-      <CardItem cardBody>
+      <CardItem cardBody style={styles.recipeImageContainer}>
         <Image
           source={{
             uri: recipe.imageUrl
@@ -17,15 +17,15 @@ const RecipeComponent = ({ recipe, day }) => {
           style={styles.recipeImage}
         />
       </CardItem>
-      <CardItem>
+      <CardItem style={styles.recipeNameContainer}>
         <Text style={styles.recipeName}>{recipe.name}</Text>
       </CardItem>
-      <CardItem>
+      <CardItem style={styles.recipeDescriptionContainer}>
         <Text style={styles.recipeDescription}>
           Preparation: 45min {"\n"}Servings: 2 people
         </Text>
       </CardItem>
-      <CardItem>
+      {/* <CardItem>
         <Left>
           <Button transparent>
             <Icon type="Entypo" active name="shuffle" />
@@ -40,7 +40,7 @@ const RecipeComponent = ({ recipe, day }) => {
             <Text>View</Text>
           </Button>
         </Left>
-      </CardItem>
+      </CardItem> */}
     </Card>
   );
 };
@@ -50,16 +50,27 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: "#bcbcbc"
   },
+  recipeImageContainer: {
+    paddingLeft: 12,
+    paddingRight: 12
+  },
   recipeImage: {
     height: 200,
-    width: null,
     flex: 1,
-    borderRadius: 5
+    borderRadius: 15
+  },
+  recipeNameContainer: {
+    marginBottom: 0,
+    paddingBottom: 0
   },
   recipeName: {
     color: "#000000",
     fontWeight: "bold",
     fontSize: 20
+  },
+  recipeDescriptionContainer: {
+    paddingTop: 0,
+    marginTop: 0
   },
   recipeDescription: {
     color: "#bcbcbc"
