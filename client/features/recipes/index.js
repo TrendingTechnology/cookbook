@@ -5,12 +5,11 @@ import {
   Header,
   Tab,
   Tabs,
-  Text,
   Container,
   Left,
   Right,
   Title,
-  Body,
+  ScrollableTab,
   Content
 } from "native-base";
 
@@ -35,27 +34,50 @@ const RecipesComponent = ({ onGetRecipes, recipes, profile }) => {
 
   return (
     <Container>
-      <Header style={styles.header}>
+      <Header style={styles.header} hasTabs>
         <Left>
           <Title style={styles.headerTitle}>Recipes</Title>
         </Left>
         <Right />
       </Header>
-      <ScrollView
-        refreshControl={
-          <RefreshControl refreshing={false} onRefresh={onGetRecipes} />
-        }
+      <Tabs
+        renderTabBar={() => <ScrollableTab style={styles.tabs} />}
+        tabBarBackgroundColor="#fff"
+        tabBarUnderlineStyle={styles.tabBarUnderline}
       >
-        <Content padder>
-          {recipes && recipes.length > 0 ? (
-            recipes.map((recipe, index) => (
-              <Recipe key={index} recipe={recipe} day={weekday[index]} />
-            ))
-          ) : (
-            <React.Fragment />
-          )}
-        </Content>
-      </ScrollView>
+        {recipes && recipes.length > 0 ? (
+          recipes.map((recipe, index) => (
+            <Tab
+              heading={weekday[index]}
+              key={index}
+              tabStyle={styles.tab}
+              activeTabStyle={styles.activeTab}
+            >
+              <ScrollView
+                refreshControl={
+                  <RefreshControl refreshing={false} onRefresh={onGetRecipes} />
+                }
+              >
+                <Content padder>
+                  <Recipe recipe={recipe} day={weekday[index]} />
+                </Content>
+              </ScrollView>
+            </Tab>
+          ))
+        ) : (
+          <Tab
+            heading="Test"
+            tabStyle={styles.tab}
+            activeTabStyle={styles.activeTab}
+          >
+            <ScrollView
+              refreshControl={
+                <RefreshControl refreshing={false} onRefresh={onGetRecipes} />
+              }
+            />
+          </Tab>
+        )}
+      </Tabs>
     </Container>
   );
 };
@@ -71,6 +93,19 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 35,
     color: "#303030"
+  },
+  tabBarUnderline: {
+    borderWidth: 0
+  },
+  tabs: {
+    marginBottom: 20,
+    borderWidth: 0
+  },
+  tab: {
+    backgroundColor: "#fff"
+  },
+  activeTab: {
+    backgroundColor: "#fff"
   }
 });
 

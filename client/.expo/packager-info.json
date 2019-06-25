@@ -1,9 +1,9 @@
 {
   "expoServerNgrokUrl": "https://6x-hzc.anonymous.client.exp.direct",
   "packagerNgrokUrl": "https://packager.6x-hzc.anonymous.client.exp.direct",
-  "ngrokPid": 35584,
+  "ngrokPid": 38624,
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 31800
+  "packagerPid": 35480
 }

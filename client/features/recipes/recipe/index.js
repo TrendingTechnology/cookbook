@@ -6,9 +6,6 @@ import { Text, Left, CardItem, Icon, Button, Card } from "native-base";
 const RecipeComponent = ({ recipe, day }) => {
   return (
     <Card transparent>
-      <CardItem header>
-        <Text style={styles.recipeDay}>{day}</Text>
-      </CardItem>
       <CardItem cardBody style={styles.recipeImageContainer}>
         <Image
           source={{
