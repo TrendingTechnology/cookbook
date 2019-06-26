@@ -15,6 +15,7 @@ import {
 
 import { GET_RECIPES_REQUEST } from "./actions.js";
 import { Recipe } from "./recipe/index.js";
+import Colors from "../../constants/Colors";
 
 const weekday = new Array(7);
 weekday[0] = "Sunday";
@@ -52,6 +53,7 @@ const RecipesComponent = ({ onGetRecipes, recipes, profile }) => {
               key={index}
               tabStyle={styles.tab}
               activeTabStyle={styles.activeTab}
+              activeTextStyle={styles.tabActiveTextStyle}
             >
               <ScrollView
                 refreshControl={
@@ -69,6 +71,7 @@ const RecipesComponent = ({ onGetRecipes, recipes, profile }) => {
             heading="Test"
             tabStyle={styles.tab}
             activeTabStyle={styles.activeTab}
+            activeTextStyle={styles.tabActiveTextStyle}
           >
             <ScrollView
               refreshControl={
@@ -95,7 +98,8 @@ const styles = StyleSheet.create({
     color: "#303030"
   },
   tabBarUnderline: {
-    borderWidth: 0
+    borderWidth: 0,
+    backgroundColor: Colors.red
   },
   tabs: {
     marginBottom: 20,
@@ -106,6 +110,9 @@ const styles = StyleSheet.create({
   },
   activeTab: {
     backgroundColor: "#fff"
+  },
+  tabActiveTextStyle: {
+    color: Colors.red
   }
 });
 

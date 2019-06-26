@@ -20,12 +20,7 @@ const RecipesStack = createStackNavigator(
 );
 
 RecipesStack.navigationOptions = {
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === "ios" ? "ios-book" : "md-book"}
-    />
-  )
+  tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="book" />
 };
 
 const ProfileStack = createStackNavigator(
@@ -38,12 +33,7 @@ const ProfileStack = createStackNavigator(
 );
 
 ProfileStack.navigationOptions = {
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === "ios" ? "ios-contact" : "md-contact"}
-    />
-  )
+  tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="user" />
 };
 
 export default createAppContainer(
@@ -54,7 +44,11 @@ export default createAppContainer(
     },
     {
       tabBarOptions: {
-        showLabel: false
+        showLabel: false,
+        style: {
+          borderWidth: 0,
+          borderTopColor: "transparent"
+        }
       }
     }
   )
